@@ -46,16 +46,14 @@
       image-rendering: pixelated;
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .nav-logo a {
+      font-family: var(--pixel);
+      font-size: 10px;
+      color: var(--yellow);
+      text-decoration: none;
+      letter-spacing: 0.05em;
     }
-
-    .nav-logo img {
-      height: 32px;
-      image-rendering: pixelated;
-    }
+    .nav-logo a:hover { color: var(--white); }
 
     .nav-links {
       display: flex;
@@ -604,7 +602,7 @@
   <!-- NAV -->
   <nav>
     <div class="nav-logo">
-      <img src="imgs/logo.png" alt="Byte a Byte logo">
+      <a href="#">Byte a Byte</a>
     </div>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
@@ -931,7 +929,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="imgs/logo.png" alt="Byte a Byte">
+        <span style="font-family: var(--pixel); font-size: 10px; color: #aaa;">Byte a Byte</span>
         <div style="margin-top: 0.5rem; font-size: 12px; color: #555;">Realização: Instituto de Informática · UFRGS</div>
       </div>
       <div class="footer-credits">

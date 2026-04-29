@@ -5,6 +5,13 @@ tag: aula02
 reading_time: 4
 featured: false
 excerpt: Como ensinar o computador a escolher caminhos diferentes dependendo de uma condição. O bloco if/elif/else é a base de toda lógica de decisão.
+preview: |
+  if nota >= 7:
+    print("Aprovado!")
+  elif nota >= 5:
+    print("Recuperação")
+  else:
+    print("Reprovado")
 ---
 
 # Tomando decisões com `if`, `elif` e `else`

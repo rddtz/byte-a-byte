@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,7 +31,8 @@
       background: var(--charcoal); padding: 0 2rem; height: 56px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo img { height: 32px; image-rendering: pixelated; }
+    .nav-logo a { font-family: var(--pixel); font-size: 10px; color: var(--yellow); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-logo a:hover { color: var(--white); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-family: var(--pixel); font-size: 8px; color: var(--yellow); text-decoration: none; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
@@ -86,82 +86,110 @@
 
     /* ── ARTICLE ── */
     .post-body {
-      max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem;
       background-color: var(--paper);
       background-image: repeating-linear-gradient(transparent, transparent 31px, #C5BBA855 31px, #C5BBA855 32px);
+      padding: 4rem 2rem 6rem;
+    }
+    .post-body-inner {
+      max-width: 720px; margin: 0 auto;
     }
 
     /* ── MARKDOWN CONTENT ── */
     .post-content h1 { display: none; }
 
     .post-content h2 {
-      font-family: var(--pixel); font-size: clamp(9px, 1.4vw, 12px);
-      line-height: 1.9; margin: 3rem 0 1.2rem;
-      color: var(--charcoal); padding-bottom: 0.5rem;
-      border-bottom: 3px solid var(--yellow);
+      font-family: var(--pixel); font-size: 14px;
+      line-height: 1.9; margin: 3.5rem 0 1.4rem;
+      color: var(--charcoal);
+      border-left: 5px solid var(--yellow);
+      padding-left: 1rem;
     }
     .post-content h3 {
-      font-family: var(--pixel); font-size: clamp(8px, 1.1vw, 10px);
-      line-height: 1.9; margin: 2rem 0 0.8rem; color: var(--charcoal);
+      font-family: var(--mono); font-weight: 700; font-size: 17px;
+      line-height: 1.8; margin: 2.5rem 0 1rem; color: var(--charcoal);
+    }
+    .post-content h3::before {
+      content: '// '; color: var(--yellow); font-weight: 400;
     }
     .post-content p {
       font-family: var(--mono); font-size: 15px; line-height: 2;
       margin-bottom: 1.5rem; color: var(--charcoal);
     }
-    .post-content strong { color: var(--black); }
-    .post-content em { font-style: italic; }
+    .post-content strong { color: var(--black); font-weight: 700; }
+    .post-content em { font-style: italic; color: var(--charcoal-light); }
 
     .post-content code {
       font-family: var(--mono); font-size: 13px;
       background: var(--black); color: #CE9178;
-      padding: 2px 7px; border-radius: 0;
+      padding: 2px 7px;
     }
     .post-content pre {
-      background: var(--black); margin: 1.5rem 0;
+      margin: 2rem 0;
       border: 3px solid var(--charcoal);
-      box-shadow: 5px 5px 0 var(--charcoal);
+      box-shadow: 6px 6px 0 var(--charcoal);
       overflow-x: auto;
-      padding: 0;
     }
     .post-content pre code {
       display: block; padding: 1.5rem;
-      background: transparent; color: #D4D4D4;
+      background: var(--black); color: #D4D4D4;
       font-size: 13px; line-height: 2;
-      border-radius: 0;
     }
 
+    /* ── HIGHLIGHT.JS CUSTOM THEME ── */
+    .hljs { background: var(--black); color: #D4D4D4; }
+    .hljs-keyword, .hljs-selector-tag { color: #569CD6; }
+    .hljs-string, .hljs-attr { color: #CE9178; }
+    .hljs-number, .hljs-literal { color: #85E89D; }
+    .hljs-comment { color: #888; font-style: italic; }
+    .hljs-built_in, .hljs-title.function_ { color: #DCDCAA; }
+    .hljs-variable, .hljs-params { color: #D4D4D4; }
+    .hljs-doctag, .hljs-meta { color: #7ECA9C; }
+    .hljs-title { color: #DCDCAA; }
+    .hljs-name { color: #79C0FF; }
+
     .post-content ul, .post-content ol {
-      margin: 1rem 0 1.5rem 2rem;
+      margin: 1rem 0 1.5rem 1.5rem;
     }
     .post-content li {
       font-family: var(--mono); font-size: 14px;
-      line-height: 2; margin-bottom: 0.4rem;
+      line-height: 2; margin-bottom: 0.5rem;
     }
+    .post-content li::marker { color: var(--yellow); font-weight: 700; }
     .post-content li code { font-size: 12px; }
 
     .post-content blockquote {
-      border-left: 4px solid var(--yellow);
-      padding: 0.8rem 1.5rem;
-      margin: 1.5rem 0;
+      border-left: 5px solid var(--yellow);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
       background: var(--paper-dark);
+      box-shadow: 4px 4px 0 var(--yellow);
     }
     .post-content blockquote p {
-      color: var(--charcoal-light); margin-bottom: 0; font-size: 14px;
+      color: var(--charcoal); margin-bottom: 0; font-size: 14px; font-style: italic;
+    }
+
+    .post-content hr {
+      border: none; border-top: 3px solid var(--charcoal);
+      margin: 3rem 0;
     }
 
     .post-content table {
       width: 100%; border-collapse: collapse;
-      margin: 1.5rem 0; font-size: 13px;
+      margin: 2rem 0;
+      border: 3px solid var(--charcoal);
+      box-shadow: 5px 5px 0 var(--charcoal);
     }
     .post-content th {
       font-family: var(--pixel); font-size: 8px;
       background: var(--charcoal); color: var(--yellow);
-      padding: 10px 12px; text-align: left;
+      padding: 12px 14px; text-align: left;
     }
     .post-content td {
-      font-family: var(--mono); padding: 10px 12px;
+      font-family: var(--mono); font-size: 13px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--paper-dark);
     }
+    .post-content tr:last-child td { border-bottom: none; }
     .post-content tr:nth-child(even) td { background: var(--paper-dark); }
 
     /* ── ERROR / LOADING ── */
@@ -182,17 +210,13 @@
       align-items: center; flex-wrap: wrap; gap: 2rem;
     }
     .footer-logo { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer-logo img {
-      height: 28px; image-rendering: pixelated;
-      filter: brightness(0) invert(1); opacity: 0.7;
-    }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-logo">
-      <a href="index.html"><img src="imgs/logo.png" alt="Byte a Byte" /></a>
+      <a href="index.html">Byte a Byte</a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -218,15 +242,17 @@
   </div>
 
   <div class="post-body">
-    <div class="post-content" id="post-content">
-      <p class="state-msg">Carregando post...</p>
+    <div class="post-body-inner">
+      <div class="post-content" id="post-content">
+        <p class="state-msg">Carregando post...</p>
+      </div>
     </div>
   </div>
 
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="imgs/logo.png" alt="Byte a Byte" />
+        <span style="font-family: var(--pixel); font-size: 10px; color: #aaa;">Byte a Byte</span>
         <span style="font-size: 12px;">Instituto de Informática · UFRGS</span>
       </div>
       <div style="text-align: right; line-height: 2;">

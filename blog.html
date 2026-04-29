@@ -31,7 +31,8 @@
       background: var(--charcoal); padding: 0 2rem; height: 56px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo img { height: 32px; image-rendering: pixelated; }
+    .nav-logo a { font-family: var(--pixel); font-size: 10px; color: var(--yellow); text-decoration: none; letter-spacing: 0.05em; }
+    .nav-logo a:hover { color: var(--white); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-family: var(--pixel); font-size: 8px;
@@ -173,7 +174,21 @@
       line-height: 1.9; color: #D4D4D4; min-height: 130px;
       display: flex; align-items: flex-start; overflow: hidden;
     }
-    .card-code pre { white-space: pre; }
+    .card-code pre { white-space: pre; margin: 0; }
+    .card-code .hljs,
+    .featured-visual .hljs { background: transparent; }
+
+    /* ── HIGHLIGHT.JS CUSTOM THEME ── */
+    .hljs { background: var(--black); color: #D4D4D4; }
+    .hljs-keyword, .hljs-selector-tag { color: #569CD6; }
+    .hljs-string, .hljs-attr { color: #CE9178; }
+    .hljs-number, .hljs-literal { color: #85E89D; }
+    .hljs-comment { color: #888; font-style: italic; }
+    .hljs-built_in, .hljs-title.function_ { color: #DCDCAA; }
+    .hljs-variable, .hljs-params { color: #D4D4D4; }
+    .hljs-doctag, .hljs-meta { color: #7ECA9C; }
+    .hljs-title { color: #DCDCAA; }
+    .hljs-name { color: #79C0FF; }
 
     .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
     .card-title { font-family: var(--pixel); font-size: 9px; line-height: 1.9; color: var(--charcoal); }
@@ -199,7 +214,6 @@
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
     }
     .footer-logo { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer-logo img { height: 28px; image-rendering: pixelated; filter: brightness(0) invert(1); opacity: 0.7; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
@@ -216,7 +230,7 @@
 
   <nav>
     <div class="nav-logo">
-      <a href="index.html"><img src="imgs/logo.png" alt="Byte a Byte" /></a>
+      <a href="index.html">Byte a Byte</a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -265,7 +279,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="imgs/logo.png" alt="Byte a Byte" />
+        <span style="font-family: var(--pixel); font-size: 10px; color: #aaa;">Byte a Byte</span>
         <span style="font-size: 12px;">Instituto de Informática · UFRGS</span>
       </div>
       <div style="text-align: right; line-height: 2;">
@@ -275,6 +289,8 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
   <script>
     const TAG_CONFIG = {
       aula01: { label: 'AULA 01', cls: '' },
@@ -283,34 +299,22 @@
       dica:   { label: 'DICA',    cls: 'tag-dica' },
     };
 
-    const TAG_SNIPPETS = {
-      aula01: `<span style="color:#FFE566"># Tipos de dados</span>
-nome = <span style="color:#FFA07A">"Ana"</span>        <span style="color:#7ECA9C"># str</span>
-idade = <span style="color:#85E89D">21</span>           <span style="color:#7ECA9C"># int</span>
-altura = <span style="color:#85E89D">1.65</span>        <span style="color:#7ECA9C"># float</span>
-aprovada = <span style="color:#79C0FF">True</span>     <span style="color:#7ECA9C"># bool</span>`,
-
-      aula02: `<span style="color:#79C0FF">if</span> nota >= <span style="color:#85E89D">7</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Aprovado!"</span>)
-<span style="color:#79C0FF">elif</span> nota >= <span style="color:#85E89D">5</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Recuperação"</span>)
-<span style="color:#79C0FF">else</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Reprovado"</span>)`,
-
-      aula03: `<span style="color:#79C0FF">def</span> <span style="color:#F8F89A">saudacao</span>(nome):
-  <span style="color:#79C0FF">return</span> <span style="color:#FFA07A">f"Olá, </span><span style="color:#FFE566">{nome}</span><span style="color:#FFA07A">!"</span>
-
-msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"Ana"</span>)
-<span style="color:#F8F89A">print</span>(msg)
-<span style="color:#3DFF5C">&gt;&gt;&gt; Olá, Ana!</span>`,
-
-      dica: `<span style="color:#FFE566"># Python é para todos</span>
-<span style="color:#79C0FF">import</span> this
-
-<span style="color:#7ECA9C"># "Beautiful is better</span>
-<span style="color:#7ECA9C">#  than ugly."</span>
-<span style="color:#7ECA9C">#  — The Zen of Python</span>`,
+    const TAG_FALLBACKS = {
+      aula01: `nome = "Ana"        # str\nidade = 21          # int\naltura = 1.65       # float\naprovada = True     # bool`,
+      aula02: `if nota >= 7:\n  print("Aprovado!")\nelif nota >= 5:\n  print("Recuperação")\nelse:\n  print("Reprovado")`,
+      aula03: `def saudacao(nome):\n  return f"Olá, {nome}!"\n\nprint(saudacao("Ana"))`,
+      dica:   `# Python é para todos\nimport this\n\n# "Beautiful is better\n#  than ugly."`,
     };
+
+    function highlightPreview(code, tag) {
+      const src = (code || TAG_FALLBACKS[tag] || '').trim();
+      if (!src) return '';
+      try {
+        return hljs.highlight(src, { language: 'python' }).value;
+      } catch {
+        return esc(src);
+      }
+    }
 
     function esc(s) {
       return String(s)
@@ -327,11 +331,11 @@ msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"A
 
     function featuredHTML(post) {
       const tag = TAG_CONFIG[post.tag] || { label: esc(post.tag), cls: '' };
-      const snippet = TAG_SNIPPETS[post.tag] || TAG_SNIPPETS.dica;
+      const highlighted = highlightPreview(post.preview, post.tag);
       return `
         <a class="featured reveal" href="post.html?slug=${esc(post.slug)}">
           <div class="featured-visual">
-            <pre>${snippet}</pre>
+            <pre><code class="hljs">${highlighted}</code></pre>
           </div>
           <div class="featured-content">
             <span class="post-tag ${esc(tag.cls)}">${esc(tag.label)} · DESTAQUE</span>
@@ -349,10 +353,10 @@ msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"A
 
     function cardHTML(post) {
       const tag = TAG_CONFIG[post.tag] || { label: esc(post.tag), cls: '' };
-      const snippet = TAG_SNIPPETS[post.tag] || TAG_SNIPPETS.dica;
+      const highlighted = highlightPreview(post.preview, post.tag);
       return `
         <a class="post-card reveal" href="post.html?slug=${esc(post.slug)}" data-cat="${esc(post.tag)}">
-          <div class="card-code"><pre>${snippet}</pre></div>
+          <div class="card-code"><pre><code class="hljs">${highlighted}</code></pre></div>
           <div class="card-body">
             <span class="post-tag ${esc(tag.cls)}">${esc(tag.label)}</span>
             <p class="card-title">${esc(post.title)}</p>
@@ -396,7 +400,7 @@ msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"A
         const posts = await res.json();
 
         const featured = posts.find(p => p.featured) || posts[0];
-        const rest = posts.filter(p => p.slug !== featured.slug);
+        const rest = posts;
 
         document.getElementById('featured-container').innerHTML = featuredHTML(featured);
         document.getElementById('posts-grid').innerHTML =

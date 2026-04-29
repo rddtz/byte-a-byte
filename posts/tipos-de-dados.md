@@ -5,6 +5,13 @@ tag: aula01
 reading_time: 5
 featured: true
 excerpt: Antes de escrever qualquer programa, você precisa entender como o Python representa a informação. Exploramos os quatro tipos básicos com exemplos do cotidiano.
+preview: |
+  nome = "Ana"        # str
+  idade = 21          # int
+  altura = 1.65       # float
+  aprovada = True     # bool
+
+  print(type(nome))   # <class 'str'>
 ---
 
 # O que são tipos de dados?

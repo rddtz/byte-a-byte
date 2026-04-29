@@ -5,6 +5,12 @@ tag: aula03
 reading_time: 4
 featured: false
 excerpt: Uma lista é como uma caixa que guarda vários itens em ordem. Aprenda a criar, acessar, modificar e percorrer listas — um dos recursos mais usados em Python.
+preview: |
+  frutas = ["maçã", "banana", "uva"]
+  frutas.append("manga")
+
+  print(frutas[0])    # maçã
+  print(len(frutas))  # 4
 ---
 
 # Listas: guardando vários valores de uma vez

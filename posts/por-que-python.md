@@ -5,6 +5,13 @@ tag: dica
 reading_time: 3
 featured: false
 excerpt: Python está em todo lugar — de análise de dados a automação. Entenda por que é a melhor escolha para quem está começando, e onde essa linguagem pode te levar.
+preview: |
+  import this
+
+  # "Simple is better
+  #  than complex."
+  # "Readability counts."
+  #  — The Zen of Python
 ---
 
 # Por que Python?

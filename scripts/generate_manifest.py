@@ -17,12 +17,26 @@ def parse_frontmatter(text):
     fm_text = text[3:end].strip()
     body = text[end + 3:].strip()
     fields = {}
-    for line in fm_text.splitlines():
+    lines = fm_text.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
         if ":" not in line:
+            i += 1
             continue
         key, _, value = line.partition(":")
+        key = key.strip()
         value = value.strip().strip('"\'')
-        fields[key.strip()] = value
+        if value == "|":
+            block = []
+            i += 1
+            while i < len(lines) and (lines[i].startswith("  ") or lines[i].strip() == ""):
+                block.append(lines[i][2:] if lines[i].startswith("  ") else "")
+                i += 1
+            fields[key] = "\n".join(block).rstrip()
+        else:
+            fields[key] = value
+            i += 1
     return fields, body
 
 
@@ -54,6 +68,7 @@ def main():
             "reading_time": fields.get("reading_time", 5),
             "excerpt": fields.get("excerpt", ""),
             "featured": fields.get("featured", False),
+            "preview": fields.get("preview", ""),
         })
 
     posts.sort(key=lambda p: p["date"], reverse=True)

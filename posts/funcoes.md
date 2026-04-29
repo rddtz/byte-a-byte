@@ -5,6 +5,12 @@ tag: aula03
 reading_time: 4
 featured: false
 excerpt: Funções evitam repetição e tornam o código mais organizado. Entenda como criar as suas com def e return, e por que isso muda tudo.
+preview: |
+  def calcular_media(notas):
+    return sum(notas) / len(notas)
+
+  media = calcular_media([8, 7, 9])
+  print(media)  # 8.0
 ---
 
 # Funções: código que você escreve uma vez e usa várias

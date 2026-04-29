@@ -5,6 +5,12 @@ tag: aula02
 reading_time: 5
 featured: false
 excerpt: Laços de repetição são uma das ferramentas mais poderosas da programação. Veja como e quando usar cada um — e como não cair em loops infinitos.
+preview: |
+  for i in range(5):
+    print(f"Vez {i + 1}")
+  # >>> Vez 1
+  # >>> Vez 2
+  # >>> Vez 3 ...
 ---
 
 # Laços de repetição: `for` e `while`
