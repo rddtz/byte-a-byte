@@ -48,16 +48,12 @@
     @media (max-width: 600px) { .nav-links { display: none; } }
 
     /* ── HEADER ── */
-    .blog-header {
-      padding-top: 56px;
-      background: var(--charcoal);
-    }
+    .blog-header { padding-top: 56px; background: var(--charcoal); }
     .blog-header-inner {
       max-width: 1040px; margin: 0 auto; padding: 4rem 2rem 3rem;
       display: flex; align-items: flex-end; justify-content: space-between;
       gap: 2rem; flex-wrap: wrap;
     }
-    .blog-header-text {}
     .blog-eyebrow {
       font-family: var(--pixel); font-size: 8px;
       color: var(--yellow); letter-spacing: 0.2em;
@@ -67,9 +63,7 @@
       font-family: var(--pixel); font-size: clamp(14px, 2.5vw, 22px);
       color: var(--white); line-height: 1.8; margin-bottom: 1rem;
     }
-    .blog-desc {
-      font-size: 14px; color: #999; line-height: 1.9; max-width: 480px;
-    }
+    .blog-desc { font-size: 14px; color: #999; line-height: 1.9; max-width: 480px; }
     .blog-back {
       font-family: var(--pixel); font-size: 8px;
       color: var(--yellow); text-decoration: none;
@@ -83,32 +77,22 @@
     .torn svg { display: block; width: 100%; }
 
     /* ── MAIN ── */
-    .blog-main {
-      max-width: 1040px; margin: 0 auto; padding: 3rem 2rem 6rem;
-    }
+    .blog-main { max-width: 1040px; margin: 0 auto; padding: 3rem 2rem 6rem; }
 
     /* ── FEATURED ── */
     .featured {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1fr;
       border: 3px solid var(--charcoal);
       box-shadow: 6px 6px 0 var(--charcoal);
-      margin-bottom: 3rem;
-      text-decoration: none;
-      color: inherit;
-      background: var(--white);
+      margin-bottom: 3rem; text-decoration: none;
+      color: inherit; background: var(--white);
       transition: transform 0.1s, box-shadow 0.1s;
     }
-    .featured:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 9px 9px 0 var(--charcoal);
-    }
+    .featured:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--charcoal); }
 
     .featured-visual {
-      background: var(--black);
-      min-height: 300px;
-      display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
+      background: var(--black); min-height: 300px;
+      display: flex; align-items: center; justify-content: center; padding: 2rem;
     }
     .featured-visual pre {
       font-family: var(--mono); font-size: 13px;
@@ -133,16 +117,12 @@
       font-family: var(--pixel); font-size: clamp(10px, 1.6vw, 14px);
       line-height: 1.9; color: var(--charcoal);
     }
-    .featured-excerpt {
-      font-size: 13px; line-height: 1.9; color: var(--charcoal-light);
-    }
+    .featured-excerpt { font-size: 13px; line-height: 1.9; color: var(--charcoal-light); }
     .featured-meta {
       font-size: 11px; color: #aaa;
       display: flex; gap: 0.8rem; align-items: center;
     }
-    .meta-dot {
-      width: 4px; height: 4px; background: var(--yellow); display: inline-block;
-    }
+    .meta-dot { width: 4px; height: 4px; background: var(--yellow); display: inline-block; }
     .read-more {
       font-family: var(--pixel); font-size: 8px; color: var(--charcoal);
       display: inline-flex; align-items: center; gap: 8px; margin-top: 0.5rem;
@@ -155,19 +135,14 @@
       display: flex; gap: 0.6rem; flex-wrap: wrap;
       margin-bottom: 2rem; align-items: center;
     }
-    .filter-label {
-      font-family: var(--pixel); font-size: 8px; color: var(--charcoal-light);
-      margin-right: 0.4rem;
-    }
+    .filter-label { font-family: var(--pixel); font-size: 8px; color: var(--charcoal-light); margin-right: 0.4rem; }
     .cat-btn {
       font-family: var(--pixel); font-size: 7px;
       padding: 6px 14px; border: 2px solid var(--charcoal);
       background: transparent; cursor: pointer; color: var(--charcoal);
       transition: background 0.1s, color 0.1s;
     }
-    .cat-btn:hover, .cat-btn.active {
-      background: var(--charcoal); color: var(--yellow);
-    }
+    .cat-btn:hover, .cat-btn.active { background: var(--charcoal); color: var(--yellow); }
 
     /* ── GRID ── */
     .section-label {
@@ -175,7 +150,6 @@
       letter-spacing: 0.2em; color: var(--charcoal-light);
       margin-bottom: 1.5rem; display: block;
     }
-
     .posts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -191,59 +165,41 @@
       transition: transform 0.1s, box-shadow 0.1s;
       overflow: hidden;
     }
-    .post-card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 7px 7px 0 var(--charcoal);
-    }
+    .post-card:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--charcoal); }
 
     .card-code {
       background: var(--black); padding: 1.2rem 1.5rem;
       font-family: var(--mono); font-size: 12px;
       line-height: 1.9; color: #D4D4D4; min-height: 130px;
-      display: flex; align-items: flex-start;
-      overflow: hidden;
+      display: flex; align-items: flex-start; overflow: hidden;
     }
     .card-code pre { white-space: pre; }
 
-    .card-body {
-      padding: 1.5rem; display: flex; flex-direction: column;
-      gap: 0.7rem; flex: 1;
-    }
-
-    .card-title {
-      font-family: var(--pixel); font-size: 9px;
-      line-height: 1.9; color: var(--charcoal);
-    }
-    .card-excerpt {
-      font-size: 12px; line-height: 1.8;
-      color: var(--charcoal-light); flex: 1;
-    }
+    .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+    .card-title { font-family: var(--pixel); font-size: 9px; line-height: 1.9; color: var(--charcoal); }
+    .card-excerpt { font-size: 12px; line-height: 1.8; color: var(--charcoal-light); flex: 1; }
     .card-footer {
       display: flex; justify-content: space-between; align-items: center;
       padding-top: 0.8rem; border-top: 2px solid var(--paper-dark);
       font-size: 11px; color: #aaa; margin-top: auto;
     }
-    .card-arrow {
-      font-family: var(--pixel); font-size: 9px;
-      color: var(--charcoal); transition: transform 0.15s;
-    }
+    .card-arrow { font-family: var(--pixel); font-size: 9px; color: var(--charcoal); transition: transform 0.15s; }
     .post-card:hover .card-arrow { transform: translateX(3px); }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--black); padding: 3rem 2rem;
-      font-family: var(--mono); font-size: 13px; color: #555;
+    /* ── LOADING / EMPTY ── */
+    .state-msg {
+      font-family: var(--pixel); font-size: 9px; line-height: 2;
+      color: var(--charcoal-light); text-align: center; padding: 3rem; grid-column: 1/-1;
     }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 3rem 2rem; font-family: var(--mono); font-size: 13px; color: #555; }
     .footer-inner {
       max-width: 1040px; margin: 0 auto;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
     }
     .footer-logo { display: flex; flex-direction: column; gap: 0.5rem; }
-    .footer-logo img {
-      height: 28px; image-rendering: pixelated;
-      filter: brightness(0) invert(1); opacity: 0.7;
-    }
+    .footer-logo img { height: 28px; image-rendering: pixelated; filter: brightness(0) invert(1); opacity: 0.7; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
@@ -258,7 +214,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">
       <a href="index.html"><img src="imgs/logo.png" alt="Byte a Byte" /></a>
@@ -272,10 +227,9 @@
     <a class="nav-cta" href="index.html#inscricao">Inscreva-se</a>
   </nav>
 
-  <!-- HEADER -->
   <div class="blog-header">
     <div class="blog-header-inner">
-      <div class="blog-header-text">
+      <div>
         <span class="blog-eyebrow">// blog</span>
         <h1 class="blog-title">Conteúdo extra<br/>para ir além</h1>
         <p class="blog-desc">Dicas, exemplos e explicações para complementar as aulas e tirar dúvidas no dia a dia.</p>
@@ -289,35 +243,9 @@
     </div>
   </div>
 
-  <!-- MAIN -->
   <main class="blog-main">
+    <div id="featured-container"></div>
 
-    <!-- FEATURED -->
-    <a class="featured reveal" href="posts/tipos-de-dados.html">
-      <div class="featured-visual">
-        <pre><span style="color:#FFE566"># Aula 01 — Tipos de dados</span>
-nome = <span style="color:#FFA07A">"Ana"</span>        <span style="color:#7ECA9C"># str</span>
-idade = <span style="color:#85E89D">21</span>           <span style="color:#7ECA9C"># int</span>
-altura = <span style="color:#85E89D">1.65</span>        <span style="color:#7ECA9C"># float</span>
-aprovada = <span style="color:#79C0FF">True</span>     <span style="color:#7ECA9C"># bool</span>
-
-<span style="color:#F8F89A">print</span>(type(nome))
-<span style="color:#3DFF5C">&gt;&gt;&gt; &lt;class 'str'&gt;</span></pre>
-      </div>
-      <div class="featured-content">
-        <span class="post-tag">AULA 01 · DESTAQUE</span>
-        <h2 class="featured-title">O que são tipos de dados?<br/>int, float, str e bool explicados</h2>
-        <p class="featured-excerpt">Antes de escrever qualquer programa, você precisa entender como o Python representa a informação. Exploramos os quatro tipos básicos com exemplos do cotidiano.</p>
-        <div class="featured-meta">
-          <span>5 min de leitura</span>
-          <span class="meta-dot"></span>
-          <span>Byte a Byte</span>
-        </div>
-        <span class="read-more">Ler post <span class="arrow">→</span></span>
-      </div>
-    </a>
-
-    <!-- FILTERS -->
     <div class="filters-row reveal">
       <span class="filter-label">filtrar:</span>
       <button class="cat-btn active" data-cat="all">Todos</button>
@@ -329,110 +257,11 @@ aprovada = <span style="color:#79C0FF">True</span>     <span style="color:#7ECA9
 
     <span class="section-label reveal">// todos os posts</span>
 
-    <!-- GRID -->
-    <div class="posts-grid">
-
-      <a class="post-card reveal" href="posts/condicionais.html" data-cat="aula02">
-        <div class="card-code">
-          <pre><span style="color:#79C0FF">if</span> nota >= <span style="color:#85E89D">7</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Aprovado!"</span>)
-<span style="color:#79C0FF">elif</span> nota >= <span style="color:#85E89D">5</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Recuperação"</span>)
-<span style="color:#79C0FF">else</span>:
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Reprovado"</span>)</pre>
-        </div>
-        <div class="card-body">
-          <span class="post-tag tag-02">AULA 02</span>
-          <p class="card-title">if, elif e else: tomando decisões com Python</p>
-          <p class="card-excerpt">Como ensinar o computador a escolher caminhos diferentes dependendo de uma condição.</p>
-          <div class="card-footer">
-            <span>4 min de leitura</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="post-card reveal" href="posts/loops.html" data-cat="aula02">
-        <div class="card-code">
-          <pre><span style="color:#79C0FF">for</span> i <span style="color:#79C0FF">in</span> <span style="color:#F8F89A">range</span>(<span style="color:#85E89D">5</span>):
-  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">f"Vez </span><span style="color:#FFE566">{i+1}</span><span style="color:#FFA07A">"</span>)
-
-<span style="color:#3DFF5C">&gt;&gt;&gt; Vez 1
-&gt;&gt;&gt; Vez 2
-&gt;&gt;&gt; ...</span></pre>
-        </div>
-        <div class="card-body">
-          <span class="post-tag tag-02">AULA 02</span>
-          <p class="card-title">for e while: quando o computador precisa repetir</p>
-          <p class="card-excerpt">Laços de repetição são uma das ferramentas mais poderosas da programação. Veja como e quando usar cada um.</p>
-          <div class="card-footer">
-            <span>5 min de leitura</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="post-card reveal" href="posts/funcoes.html" data-cat="aula03">
-        <div class="card-code">
-          <pre><span style="color:#79C0FF">def</span> <span style="color:#F8F89A">saudacao</span>(nome):
-  <span style="color:#79C0FF">return</span> <span style="color:#FFA07A">f"Olá, </span><span style="color:#FFE566">{nome}</span><span style="color:#FFA07A">!"</span>
-
-msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"Ana"</span>)
-<span style="color:#F8F89A">print</span>(msg)
-<span style="color:#3DFF5C">&gt;&gt;&gt; Olá, Ana!</span></pre>
-        </div>
-        <div class="card-body">
-          <span class="post-tag tag-03">AULA 03</span>
-          <p class="card-title">Para que serve uma função? def e return na prática</p>
-          <p class="card-excerpt">Funções evitam repetição e tornam o código mais organizado. Entenda como criar e usar as suas.</p>
-          <div class="card-footer">
-            <span>4 min de leitura</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="post-card reveal" href="posts/listas.html" data-cat="aula03">
-        <div class="card-code">
-          <pre>frutas = [<span style="color:#FFA07A">"maçã"</span>,
-          <span style="color:#FFA07A">"banana"</span>,
-          <span style="color:#FFA07A">"uva"</span>]
-
-frutas.<span style="color:#F8F89A">append</span>(<span style="color:#FFA07A">"manga"</span>)
-<span style="color:#F8F89A">print</span>(frutas[<span style="color:#85E89D">0</span>])
-<span style="color:#3DFF5C">&gt;&gt;&gt; maçã</span></pre>
-        </div>
-        <div class="card-body">
-          <span class="post-tag tag-03">AULA 03</span>
-          <p class="card-title">Listas em Python: guardando vários valores de uma vez</p>
-          <p class="card-excerpt">Uma lista é como uma caixa que guarda vários itens em ordem. Aprenda a criar, acessar e modificar.</p>
-          <div class="card-footer">
-            <span>4 min de leitura</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="post-card reveal" href="posts/por-que-python.html" data-cat="dica">
-        <div class="card-code" style="align-items: center; justify-content: center; flex-direction: column; gap: 0.8rem; min-height: 130px;">
-          <span style="font-family: var(--pixel); font-size: 11px; color: var(--yellow); line-height: 2; text-align: center;">Por que<br/>Python?</span>
-          <span style="font-size: 12px; color: #888; text-align: center;">Simples. Poderoso.<br/>Perfeito para começar.</span>
-        </div>
-        <div class="card-body">
-          <span class="post-tag tag-dica">DICA</span>
-          <p class="card-title">Por que aprender Python?</p>
-          <p class="card-excerpt">Python está em todo lugar — de análise de dados a automação. Entenda por que é a melhor escolha para quem está começando.</p>
-          <div class="card-footer">
-            <span>3 min de leitura</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </div>
-      </a>
-
+    <div class="posts-grid" id="posts-grid">
+      <p class="state-msg">Carregando posts...</p>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
@@ -447,29 +276,141 @@ frutas.<span style="color:#F8F89A">append</span>(<span style="color:#FFA07A">"ma
   </footer>
 
   <script>
-    // Category filter
-    const btns = document.querySelectorAll('.cat-btn');
-    const cards = document.querySelectorAll('.post-card[data-cat]');
+    const TAG_CONFIG = {
+      aula01: { label: 'AULA 01', cls: '' },
+      aula02: { label: 'AULA 02', cls: 'tag-02' },
+      aula03: { label: 'AULA 03', cls: 'tag-03' },
+      dica:   { label: 'DICA',    cls: 'tag-dica' },
+    };
 
-    btns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const cat = btn.dataset.cat;
-        cards.forEach(card => {
-          const show = cat === 'all' || card.dataset.cat === cat;
-          card.style.display = show ? 'flex' : 'none';
-        });
-      });
-    });
+    const TAG_SNIPPETS = {
+      aula01: `<span style="color:#FFE566"># Tipos de dados</span>
+nome = <span style="color:#FFA07A">"Ana"</span>        <span style="color:#7ECA9C"># str</span>
+idade = <span style="color:#85E89D">21</span>           <span style="color:#7ECA9C"># int</span>
+altura = <span style="color:#85E89D">1.65</span>        <span style="color:#7ECA9C"># float</span>
+aprovada = <span style="color:#79C0FF">True</span>     <span style="color:#7ECA9C"># bool</span>`,
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
+      aula02: `<span style="color:#79C0FF">if</span> nota >= <span style="color:#85E89D">7</span>:
+  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Aprovado!"</span>)
+<span style="color:#79C0FF">elif</span> nota >= <span style="color:#85E89D">5</span>:
+  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Recuperação"</span>)
+<span style="color:#79C0FF">else</span>:
+  <span style="color:#F8F89A">print</span>(<span style="color:#FFA07A">"Reprovado"</span>)`,
+
+      aula03: `<span style="color:#79C0FF">def</span> <span style="color:#F8F89A">saudacao</span>(nome):
+  <span style="color:#79C0FF">return</span> <span style="color:#FFA07A">f"Olá, </span><span style="color:#FFE566">{nome}</span><span style="color:#FFA07A">!"</span>
+
+msg = <span style="color:#F8F89A">saudacao</span>(<span style="color:#FFA07A">"Ana"</span>)
+<span style="color:#F8F89A">print</span>(msg)
+<span style="color:#3DFF5C">&gt;&gt;&gt; Olá, Ana!</span>`,
+
+      dica: `<span style="color:#FFE566"># Python é para todos</span>
+<span style="color:#79C0FF">import</span> this
+
+<span style="color:#7ECA9C"># "Beautiful is better</span>
+<span style="color:#7ECA9C">#  than ugly."</span>
+<span style="color:#7ECA9C">#  — The Zen of Python</span>`,
+    };
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatDate(d) {
+      if (!d) return '';
+      const [y, m, day] = d.split('-').map(Number);
+      const months = ['jan.','fev.','mar.','abr.','mai.','jun.','jul.','ago.','set.','out.','nov.','dez.'];
+      return `${day} ${months[m - 1]} ${y}`;
+    }
+
+    function featuredHTML(post) {
+      const tag = TAG_CONFIG[post.tag] || { label: esc(post.tag), cls: '' };
+      const snippet = TAG_SNIPPETS[post.tag] || TAG_SNIPPETS.dica;
+      return `
+        <a class="featured reveal" href="post.html?slug=${esc(post.slug)}">
+          <div class="featured-visual">
+            <pre>${snippet}</pre>
+          </div>
+          <div class="featured-content">
+            <span class="post-tag ${esc(tag.cls)}">${esc(tag.label)} · DESTAQUE</span>
+            <h2 class="featured-title">${esc(post.title)}</h2>
+            <p class="featured-excerpt">${esc(post.excerpt)}</p>
+            <div class="featured-meta">
+              <span>${esc(String(post.reading_time))} min de leitura</span>
+              <span class="meta-dot"></span>
+              <span>${esc(formatDate(post.date))}</span>
+            </div>
+            <span class="read-more">Ler post <span class="arrow">→</span></span>
+          </div>
+        </a>`;
+    }
+
+    function cardHTML(post) {
+      const tag = TAG_CONFIG[post.tag] || { label: esc(post.tag), cls: '' };
+      const snippet = TAG_SNIPPETS[post.tag] || TAG_SNIPPETS.dica;
+      return `
+        <a class="post-card reveal" href="post.html?slug=${esc(post.slug)}" data-cat="${esc(post.tag)}">
+          <div class="card-code"><pre>${snippet}</pre></div>
+          <div class="card-body">
+            <span class="post-tag ${esc(tag.cls)}">${esc(tag.label)}</span>
+            <p class="card-title">${esc(post.title)}</p>
+            <p class="card-excerpt">${esc(post.excerpt)}</p>
+            <div class="card-footer">
+              <span>${esc(String(post.reading_time))} min de leitura</span>
+              <span class="card-arrow">→</span>
+            </div>
+          </div>
+        </a>`;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
       });
     }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function initReveal() {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+    }
+
+    function initFilters() {
+      const btns = document.querySelectorAll('.cat-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.dataset.cat;
+          document.querySelectorAll('.post-card[data-cat]').forEach(card => {
+            card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+          });
+        });
+      });
+    }
+
+    async function init() {
+      try {
+        const res = await fetch('posts/manifest.json');
+        if (!res.ok) throw new Error();
+        const posts = await res.json();
+
+        const featured = posts.find(p => p.featured) || posts[0];
+        const rest = posts.filter(p => p.slug !== featured.slug);
+
+        document.getElementById('featured-container').innerHTML = featuredHTML(featured);
+        document.getElementById('posts-grid').innerHTML =
+          rest.length ? rest.map(cardHTML).join('') : '<p class="state-msg">Nenhum post ainda.</p>';
+
+        initFilters();
+        initReveal();
+      } catch {
+        document.getElementById('posts-grid').innerHTML =
+          '<p class="state-msg">Erro ao carregar posts.</p>';
+      }
+    }
+
+    init();
   </script>
 </body>
 </html>

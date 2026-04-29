@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post — Byte a Byte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD600;
+      --charcoal: #3A3A3A;
+      --charcoal-light: #666;
+      --paper: #F5F0E4;
+      --paper-dark: #EDE7D6;
+      --black: #1A1A1A;
+      --white: #FAFAF7;
+      --pixel: 'Press Start 2P', monospace;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--mono); background: var(--paper); color: var(--charcoal); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--charcoal); padding: 0 2rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 32px; image-rendering: pixelated; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--pixel); font-size: 8px; color: var(--yellow); text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta {
+      font-family: var(--pixel); font-size: 8px;
+      background: var(--yellow); color: var(--charcoal);
+      border: none; padding: 8px 16px; cursor: pointer; text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--white); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* ── HEADER ── */
+    .post-header {
+      padding-top: 56px;
+      background: var(--charcoal);
+    }
+    .post-header-inner {
+      max-width: 760px; margin: 0 auto; padding: 4rem 2rem 3rem;
+    }
+    .post-back {
+      font-family: var(--pixel); font-size: 8px;
+      color: var(--yellow); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 2rem;
+    }
+    .post-back:hover { color: var(--white); }
+
+    .post-tag {
+      font-family: var(--pixel); font-size: 7px;
+      background: var(--yellow); color: var(--charcoal);
+      padding: 4px 10px; display: inline-block;
+      letter-spacing: 0.1em; margin-bottom: 1.5rem;
+    }
+    .post-tag.tag-02 { background: var(--charcoal); color: var(--yellow); border: 2px solid var(--yellow); }
+    .post-tag.tag-03 { background: #555; color: var(--white); }
+    .post-tag.tag-dica { background: transparent; color: var(--yellow); border: 2px solid var(--yellow); }
+
+    .post-title {
+      font-family: var(--pixel); font-size: clamp(12px, 2vw, 18px);
+      color: var(--white); line-height: 1.9; margin-bottom: 1.5rem;
+    }
+    .post-meta {
+      font-size: 12px; color: #888;
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+    }
+    .meta-dot { width: 4px; height: 4px; background: var(--yellow); display: inline-block; }
+
+    /* torn */
+    .torn { width: 100%; overflow: hidden; line-height: 0; }
+    .torn svg { display: block; width: 100%; }
+
+    /* ── ARTICLE ── */
+    .post-body {
+      max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem;
+      background-color: var(--paper);
+      background-image: repeating-linear-gradient(transparent, transparent 31px, #C5BBA855 31px, #C5BBA855 32px);
+    }
+
+    /* ── MARKDOWN CONTENT ── */
+    .post-content h1 { display: none; }
+
+    .post-content h2 {
+      font-family: var(--pixel); font-size: clamp(9px, 1.4vw, 12px);
+      line-height: 1.9; margin: 3rem 0 1.2rem;
+      color: var(--charcoal); padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--yellow);
+    }
+    .post-content h3 {
+      font-family: var(--pixel); font-size: clamp(8px, 1.1vw, 10px);
+      line-height: 1.9; margin: 2rem 0 0.8rem; color: var(--charcoal);
+    }
+    .post-content p {
+      font-family: var(--mono); font-size: 15px; line-height: 2;
+      margin-bottom: 1.5rem; color: var(--charcoal);
+    }
+    .post-content strong { color: var(--black); }
+    .post-content em { font-style: italic; }
+
+    .post-content code {
+      font-family: var(--mono); font-size: 13px;
+      background: var(--black); color: #CE9178;
+      padding: 2px 7px; border-radius: 0;
+    }
+    .post-content pre {
+      background: var(--black); margin: 1.5rem 0;
+      border: 3px solid var(--charcoal);
+      box-shadow: 5px 5px 0 var(--charcoal);
+      overflow-x: auto;
+      padding: 0;
+    }
+    .post-content pre code {
+      display: block; padding: 1.5rem;
+      background: transparent; color: #D4D4D4;
+      font-size: 13px; line-height: 2;
+      border-radius: 0;
+    }
+
+    .post-content ul, .post-content ol {
+      margin: 1rem 0 1.5rem 2rem;
+    }
+    .post-content li {
+      font-family: var(--mono); font-size: 14px;
+      line-height: 2; margin-bottom: 0.4rem;
+    }
+    .post-content li code { font-size: 12px; }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--yellow);
+      padding: 0.8rem 1.5rem;
+      margin: 1.5rem 0;
+      background: var(--paper-dark);
+    }
+    .post-content blockquote p {
+      color: var(--charcoal-light); margin-bottom: 0; font-size: 14px;
+    }
+
+    .post-content table {
+      width: 100%; border-collapse: collapse;
+      margin: 1.5rem 0; font-size: 13px;
+    }
+    .post-content th {
+      font-family: var(--pixel); font-size: 8px;
+      background: var(--charcoal); color: var(--yellow);
+      padding: 10px 12px; text-align: left;
+    }
+    .post-content td {
+      font-family: var(--mono); padding: 10px 12px;
+      border-bottom: 1px solid var(--paper-dark);
+    }
+    .post-content tr:nth-child(even) td { background: var(--paper-dark); }
+
+    /* ── ERROR / LOADING ── */
+    .state-msg {
+      font-family: var(--pixel); font-size: 10px; line-height: 2;
+      color: var(--charcoal-light); text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); padding: 3rem 2rem;
+      font-family: var(--mono); font-size: 13px; color: #555;
+    }
+    .footer-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-logo { display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-logo img {
+      height: 28px; image-rendering: pixelated;
+      filter: brightness(0) invert(1); opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <a href="index.html"><img src="imgs/logo.png" alt="Byte a Byte" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#sobre">Sobre</a></li>
+      <li><a href="index.html#conteudo">Aulas</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="index.html#inscricao">Inscreva-se</a>
+  </nav>
+
+  <div class="post-header">
+    <div class="post-header-inner">
+      <a class="post-back" href="blog.html">← Voltar ao blog</a>
+      <div id="post-tag-el"></div>
+      <h1 class="post-title" id="post-title-el">Carregando...</h1>
+      <div class="post-meta" id="post-meta-el"></div>
+    </div>
+    <div class="torn">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 L0,40 Q30,55 60,38 Q90,22 130,50 Q160,64 200,40 Q240,20 280,50 Q310,65 350,40 Q390,18 430,52 Q460,65 510,38 Q550,16 590,48 Q620,63 660,36 Q700,14 740,50 Q770,63 820,35 Q860,12 900,48 Q930,62 970,38 Q1010,16 1050,50 Q1080,63 1120,40 Q1150,20 1200,46 L1200,0 Z" fill="var(--paper)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="post-content" id="post-content">
+      <p class="state-msg">Carregando post...</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="imgs/logo.png" alt="Byte a Byte" />
+        <span style="font-size: 12px;">Instituto de Informática · UFRGS</span>
+      </div>
+      <div style="text-align: right; line-height: 2;">
+        <div><a href="blog.html" style="color: var(--yellow); text-decoration: none;">← Voltar ao blog</a></div>
+        <div style="font-size: 11px; color: #444;">© 2025 · Byte a Byte</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+  <script>
+    const TAG_CONFIG = {
+      aula01: { label: 'AULA 01', cls: '' },
+      aula02: { label: 'AULA 02', cls: 'tag-02' },
+      aula03: { label: 'AULA 03', cls: 'tag-03' },
+      dica:   { label: 'DICA',    cls: 'tag-dica' },
+    };
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatDate(d) {
+      if (!d) return '';
+      const [y, m, day] = d.split('-').map(Number);
+      const months = ['jan.','fev.','mar.','abr.','mai.','jun.','jul.','ago.','set.','out.','nov.','dez.'];
+      return `${day} ${months[m - 1]} ${y}`;
+    }
+
+    function stripFrontmatter(text) {
+      if (!text.startsWith('---')) return text;
+      const end = text.indexOf('---', 3);
+      return end === -1 ? text : text.slice(end + 3).trim();
+    }
+
+    marked.setOptions({
+      highlight: null,
+      gfm: true,
+      breaks: false,
+    });
+
+    const renderer = new marked.Renderer();
+    renderer.code = (code, lang) => {
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      const highlighted = hljs.highlight(typeof code === 'object' ? code.text : code, { language }).value;
+      return `<pre><code class="hljs language-${esc(language)}">${highlighted}</code></pre>`;
+    };
+    marked.use({ renderer });
+
+    async function loadPost() {
+      const slug = new URLSearchParams(location.search).get('slug');
+      if (!slug) { location.href = 'blog.html'; return; }
+
+      try {
+        const [manifestRes, mdRes] = await Promise.all([
+          fetch('posts/manifest.json'),
+          fetch(`posts/${encodeURIComponent(slug)}.md`),
+        ]);
+
+        if (!mdRes.ok) throw new Error('Post não encontrado.');
+
+        const manifest = await manifestRes.json();
+        const raw = await mdRes.text();
+        const post = manifest.find(p => p.slug === slug) || {};
+        const tag = TAG_CONFIG[post.tag] || { label: (post.tag || '').toUpperCase(), cls: '' };
+
+        document.title = `${post.title || slug} — Byte a Byte`;
+
+        document.getElementById('post-tag-el').innerHTML =
+          `<span class="post-tag ${esc(tag.cls)}">${esc(tag.label)}</span>`;
+
+        document.getElementById('post-title-el').textContent = post.title || slug;
+
+        document.getElementById('post-meta-el').innerHTML =
+          `<span>${post.reading_time || '?'} min de leitura</span>
+           <span class="meta-dot"></span>
+           <span>${formatDate(post.date)}</span>
+           <span class="meta-dot"></span>
+           <span>Byte a Byte</span>`;
+
+        const content = stripFrontmatter(raw);
+        document.getElementById('post-content').innerHTML = marked.parse(content);
+      } catch (err) {
+        document.getElementById('post-content').innerHTML =
+          `<p class="state-msg">Post não encontrado.<br><a href="blog.html" style="color:var(--yellow)">← Voltar ao blog</a></p>`;
+      }
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>

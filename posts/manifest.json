@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "funcoes",
+    "title": "Para que serve uma função? def e return na prática",
+    "date": "2025-06-22",
+    "tag": "aula03",
+    "reading_time": 4,
+    "excerpt": "Funções evitam repetição e tornam o código mais organizado. Entenda como criar as suas com def e return, e por que isso muda tudo.",
+    "featured": false
+  },
+  {
+    "slug": "listas",
+    "title": "Listas em Python: guardando vários valores de uma vez",
+    "date": "2025-06-22",
+    "tag": "aula03",
+    "reading_time": 4,
+    "excerpt": "Uma lista é como uma caixa que guarda vários itens em ordem. Aprenda a criar, acessar, modificar e percorrer listas — um dos recursos mais usados em Python.",
+    "featured": false
+  },
+  {
+    "slug": "loops",
+    "title": "for e while: quando o computador precisa repetir",
+    "date": "2025-06-15",
+    "tag": "aula02",
+    "reading_time": 5,
+    "excerpt": "Laços de repetição são uma das ferramentas mais poderosas da programação. Veja como e quando usar cada um — e como não cair em loops infinitos.",
+    "featured": false
+  },
+  {
+    "slug": "condicionais",
+    "title": "if, elif e else: tomando decisões com Python",
+    "date": "2025-06-08",
+    "tag": "aula02",
+    "reading_time": 4,
+    "excerpt": "Como ensinar o computador a escolher caminhos diferentes dependendo de uma condição. O bloco if/elif/else é a base de toda lógica de decisão.",
+    "featured": false
+  },
+  {
+    "slug": "tipos-de-dados",
+    "title": "O que são tipos de dados? int, float, str e bool explicados",
+    "date": "2025-06-01",
+    "tag": "aula01",
+    "reading_time": 5,
+    "excerpt": "Antes de escrever qualquer programa, você precisa entender como o Python representa a informação. Exploramos os quatro tipos básicos com exemplos do cotidiano.",
+    "featured": true
+  },
+  {
+    "slug": "por-que-python",
+    "title": "Por que aprender Python?",
+    "date": "2025-05-25",
+    "tag": "dica",
+    "reading_time": 3,
+    "excerpt": "Python está em todo lugar — de análise de dados a automação. Entenda por que é a melhor escolha para quem está começando, e onde essa linguagem pode te levar.",
+    "featured": false
+  }
+]
