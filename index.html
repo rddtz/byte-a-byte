@@ -1,0 +1,1094 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byte a Byte — Aprenda a programar do zero!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFD600;
+      --yellow-dark: #E6C000;
+      --charcoal: #3A3A3A;
+      --charcoal-light: #555;
+      --paper: #F5F0E4;
+      --paper-dark: #EDE7D6;
+      --black: #1A1A1A;
+      --white: #FAFAF7;
+      --pixel: 'Press Start 2P', monospace;
+      --mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--paper);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--charcoal);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      image-rendering: pixelated;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo img {
+      height: 32px;
+      image-rendering: pixelated;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--pixel);
+      font-size: 8px;
+      color: var(--yellow);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.1s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-family: var(--pixel);
+      font-size: 8px;
+      background: var(--yellow);
+      color: var(--charcoal);
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      image-rendering: pixelated;
+      transition: background 0.1s, transform 0.05s;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: var(--white);
+      transform: translate(-2px, -2px);
+      box-shadow: 3px 3px 0 var(--yellow);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 56px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: var(--paper);
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          #C5BBA888 31px,
+          #C5BBA888 32px
+        );
+    }
+
+    /* vertical red margin line */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 56px; bottom: 0;
+      left: 80px;
+      width: 2px;
+      background: #E8A0A055;
+    }
+
+    .hero-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: min(540px, 80vw);
+      image-rendering: pixelated;
+      margin-bottom: 2.5rem;
+      animation: floatLogo 3s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-tagline {
+      font-family: var(--pixel);
+      font-size: clamp(10px, 2vw, 16px);
+      color: var(--charcoal);
+      text-align: center;
+      line-height: 2;
+      max-width: 640px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: clamp(13px, 1.5vw, 16px);
+      color: var(--charcoal-light);
+      text-align: center;
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      font-family: var(--pixel);
+      font-size: 10px;
+      background: var(--yellow);
+      color: var(--charcoal);
+      border: 3px solid var(--charcoal);
+      padding: 14px 28px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--charcoal);
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+
+    .btn-primary:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--charcoal);
+    }
+
+    .btn-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--charcoal);
+    }
+
+    .btn-secondary {
+      font-family: var(--pixel);
+      font-size: 10px;
+      background: transparent;
+      color: var(--charcoal);
+      border: 3px solid var(--charcoal);
+      padding: 14px 28px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--charcoal);
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+
+    .btn-secondary:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--charcoal);
+      background: var(--charcoal);
+      color: var(--yellow);
+    }
+
+    /* ── TORN PAPER TRANSITION ── */
+    .torn {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      position: relative;
+    }
+
+    .torn svg { display: block; width: 100%; }
+
+    /* ── ABOUT SECTION ── */
+    .section-yellow {
+      background: var(--yellow);
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .section-paper {
+      background-color: var(--paper);
+      background-image:
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          #C5BBA855 31px,
+          #C5BBA855 32px
+        );
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .section-dark {
+      background: var(--charcoal);
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--pixel);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0.6;
+    }
+
+    .section-title {
+      font-family: var(--pixel);
+      font-size: clamp(14px, 2.5vw, 22px);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .section-body {
+      font-family: var(--mono);
+      font-size: clamp(14px, 1.5vw, 16px);
+      line-height: 1.9;
+      max-width: 680px;
+    }
+
+    /* about split layout */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero::before { left: 24px; }
+    }
+
+    .about-terminal {
+      background: var(--black);
+      border: 3px solid var(--charcoal);
+      box-shadow: 6px 6px 0 var(--charcoal);
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: #0f0;
+      line-height: 2;
+    }
+
+    .terminal-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .t-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+
+    .t-dot.red { background: #FF5F57; }
+    .t-dot.yellow { background: #FEBC2E; }
+    .t-dot.green { background: #28C840; }
+
+    .t-line { display: block; }
+    .t-prompt { color: var(--yellow); }
+    .t-comment { color: #888; }
+    .t-string { color: #CE9178; }
+    .t-keyword { color: #569CD6; }
+    .t-fn { color: #DCDCAA; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: #0f0;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 3px solid var(--charcoal);
+      box-shadow: 5px 5px 0 var(--charcoal);
+      padding: 2rem 1.5rem;
+      transition: transform 0.1s, box-shadow 0.1s;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--charcoal);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 1rem;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    /* pixel icon replacement */
+    .pixel-icon {
+      display: inline-block;
+      width: 32px; height: 32px;
+      image-rendering: pixelated;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: var(--pixel);
+      font-size: 10px;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+      color: var(--charcoal);
+    }
+
+    .card-body {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--charcoal-light);
+    }
+
+    /* ── STEPS ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .step-num {
+      font-family: var(--pixel);
+      font-size: 18px;
+      color: var(--charcoal);
+      background: var(--yellow);
+      width: 56px; height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--charcoal);
+      flex-shrink: 0;
+    }
+
+    .step-content {}
+
+    .step-title {
+      font-family: var(--pixel);
+      font-size: 11px;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .step-body {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: #aaa;
+    }
+
+    /* ── AUDIENCE ── */
+    .audience-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .aud-card {
+      border: 3px solid var(--yellow);
+      background: transparent;
+      padding: 1.5rem 1.2rem;
+      transition: background 0.1s;
+    }
+
+    .aud-card:hover {
+      background: var(--yellow);
+    }
+
+    .aud-card:hover .aud-title,
+    .aud-card:hover .aud-body {
+      color: var(--charcoal);
+    }
+
+    .aud-title {
+      font-family: var(--pixel);
+      font-size: 9px;
+      color: var(--yellow);
+      margin-bottom: 0.6rem;
+      line-height: 1.8;
+    }
+
+    .aud-body {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { margin-top: 2.5rem; }
+
+    .faq-item {
+      border-bottom: 2px solid #eee;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      font-family: var(--pixel);
+      font-size: 10px;
+      line-height: 1.8;
+      padding: 1.2rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--charcoal);
+      user-select: none;
+    }
+
+    .faq-arrow {
+      flex-shrink: 0;
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.9;
+      color: #bbb;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.2s;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-bottom: 1.2rem;
+    }
+
+    /* ── INSTAGRAM STRIP ── */
+    .insta-strip {
+      background: var(--yellow);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .insta-strip a {
+      font-family: var(--pixel);
+      font-size: 12px;
+      color: var(--charcoal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .insta-strip a:hover { text-decoration: underline; }
+
+    .insta-icon {
+      width: 32px; height: 32px;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 3rem 2rem;
+      color: #666;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo img {
+      height: 28px;
+      image-rendering: pixelated;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+    }
+
+    .footer-credits {
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .footer-credits span {
+      color: var(--yellow);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body style="background-color: rgb(255, 187, 22);" data-cc-id="cc-1">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <img src="imgs/logo.png" alt="Byte a Byte logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#conteudo">Aulas</a></li>
+      <li><a href="#monitores">Monitores</a></li>
+      <li><a href="#quem-somos">Quem somos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a class="nav-cta" href="#inscricao">Inscreva-se</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner" data-cc-id="cc-2">
+      <img class="hero-logo" src="imgs/logo.png" alt="Byte a Byte">
+      <p class="hero-tagline">Aprenda a programar do zero!</p>
+      <p class="hero-sub">
+        Queremos desmitificar a tecnologia e mostrar que qualquer pessoa pode programar com a base certa.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn-primary" href="#inscricao">Quero participar</a>
+        <a class="btn-secondary" href="#sobre">Saiba mais</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORN: paper → yellow -->
+  <div class="torn" style="background: var(--paper);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,40 Q30,55 60,38 Q90,22 130,50 Q160,68 200,45 Q240,22 280,55 Q310,70 350,42 Q390,18 430,52 Q460,68 510,40 Q550,16 590,48 Q620,65 660,38 Q700,14 740,50 Q770,66 820,35 Q860,12 900,48 Q930,64 970,40 Q1010,18 1050,52 Q1080,66 1120,42 Q1150,24 1200,50 L1200,0 Z" fill="#FFD600"></path>
+    </svg>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section-yellow" id="sobre">
+    <div class="container">
+      <div class="about-grid reveal">
+        <div>
+          <p class="section-label" style="color: var(--charcoal);">// sobre o projeto</p>
+          <h2 class="section-title" style="color: var(--charcoal);">O que é o<br>Byte a Byte?</h2>
+          <p class="section-body" style="color: var(--charcoal);">
+            O Byte a Byte é um curso de introdução à programação focado em construir um primeiro contato com o código — de forma gradual, <em>byte a byte</em>.<br><br>
+            Nosso objetivo não é formar programadores completos, mas mostrar que qualquer pessoa pode dar os primeiros passos nesse mundo usando Python, uma das linguagens mais acessíveis do mercado.<br><br>
+            O curso é <strong>online, gratuito</strong> e conta com <strong>3 aulas</strong>, exercícios semanais, 1 avaliação final e monitoria de segunda a sábado.
+          </p>
+        </div>
+        <div class="about-terminal">
+          <div class="terminal-bar">
+            <span class="t-dot red"></span>
+            <span class="t-dot yellow"></span>
+            <span class="t-dot green"></span>
+          </div>
+          <span class="t-line"><span class="t-comment"># byteabyte.py</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-keyword">nome</span> = <span class="t-string">"Maria"</span></span>
+          <span class="t-line"><span class="t-keyword">nota</span> = <span class="t-fn">9.5</span></span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-keyword">if</span> nota &gt;= <span class="t-fn">7</span>:</span>
+          <span class="t-line">&nbsp;&nbsp;<span class="t-fn">print</span>(<span class="t-string">"Aprovada!"</span>)</span>
+          <span class="t-line">&nbsp;</span>
+          <span class="t-line"><span class="t-prompt">&gt;&gt;&gt; </span>Aprovada! <span class="cursor"></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORN: yellow → paper -->
+  <div class="torn" style="background: var(--yellow);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,30 Q40,55 80,32 Q120,10 160,45 Q195,68 240,38 Q280,12 320,50 Q350,68 400,38 Q440,10 480,45 Q510,65 560,35 Q600,10 640,48 Q670,65 720,35 Q760,10 800,46 Q830,64 880,38 Q920,14 960,48 Q990,65 1040,38 Q1080,14 1120,46 Q1150,62 1200,40 L1200,0 Z" fill="var(--paper)"></path>
+    </svg>
+  </div>
+
+  <!-- CONTENT -->
+  <section class="section-paper" id="conteudo">
+    <div class="container">
+      <p class="section-label reveal">// estrutura do curso</p>
+      <h2 class="section-title reveal">3 Aulas + 1 Avaliação</h2>
+      <p class="section-body reveal" style="margin-bottom: 2.5rem;">Cada aula cobre um bloco essencial da programação. Sem pressa, sem pular etapas.</p>
+      <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+
+        <div class="card reveal" style="border-color: var(--yellow); box-shadow: 5px 5px 0 var(--yellow);">
+          <div style="font-family: var(--pixel); font-size: 9px; color: var(--yellow); margin-bottom: 0.8rem;">AULA 01</div>
+          <p class="card-title">Tipos de Dados</p>
+          <p class="card-body">Inteiros, decimais, textos e booleanos. Aprenda como o Python representa e armazena informação.</p>
+          <div style="margin-top: 1.2rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #CE9178; padding: 2px 8px;">int</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #CE9178; padding: 2px 8px;">float</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #CE9178; padding: 2px 8px;">str</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #CE9178; padding: 2px 8px;">bool</span>
+          </div>
+        </div>
+
+        <div class="card reveal" style="border-color: var(--yellow); box-shadow: 5px 5px 0 var(--yellow);">
+          <div style="font-family: var(--pixel); font-size: 9px; color: var(--yellow); margin-bottom: 0.8rem;">AULA 02</div>
+          <p class="card-title">Condicionais e Laços</p>
+          <p class="card-body">Ensine o computador a tomar decisões e a repetir tarefas. O coração da lógica de programação.</p>
+          <div style="margin-top: 1.2rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #569CD6; padding: 2px 8px;">if / else</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #569CD6; padding: 2px 8px;">for</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #569CD6; padding: 2px 8px;">while</span>
+          </div>
+        </div>
+
+        <div class="card reveal" style="border-color: var(--yellow); box-shadow: 5px 5px 0 var(--yellow);">
+          <div style="font-family: var(--pixel); font-size: 9px; color: var(--yellow); margin-bottom: 0.8rem;">AULA 03</div>
+          <p class="card-title">Listas e Funções</p>
+          <p class="card-body">Organize coleções de dados e crie blocos de código reutilizáveis para resolver problemas maiores.</p>
+          <div style="margin-top: 1.2rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #DCDCAA; padding: 2px 8px;">list</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #DCDCAA; padding: 2px 8px;">def</span>
+            <span style="font-family: var(--mono); font-size: 11px; background: #1A1A1A; color: #DCDCAA; padding: 2px 8px;">return</span>
+          </div>
+        </div>
+
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+        <div class="card reveal" style="background: var(--charcoal); border-color: var(--charcoal);">
+          <p class="card-title" style="color: var(--white);">Exercícios Semanais</p>
+          <p class="card-body" style="color: #aaa;">Pratique entre as aulas com listas de exercícios de fixação. Os monitores estão disponíveis para ajudar de segunda a sábado.</p>
+        </div>
+        <div class="card reveal" style="background: var(--charcoal); border-color: var(--charcoal);">
+          <p class="card-title" style="color: var(--white);">Avaliação Final</p>
+          <p class="card-body" style="color: #aaa;">Uma avaliação ao final do curso para consolidar tudo que você aprendeu. É o seu momento de mostrar o quanto evoluiu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORN: paper → dark -->
+  <div class="torn" style="background: var(--paper);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,50 Q25,30 60,52 Q100,72 140,44 Q175,22 215,52 Q245,70 290,42 Q330,18 370,50 Q400,68 445,40 Q485,16 525,50 Q555,68 600,42 Q640,18 680,50 Q710,66 755,40 Q800,16 840,50 Q870,66 920,42 Q960,20 1000,50 Q1030,68 1080,42 Q1120,18 1160,50 Q1185,62 1200,48 L1200,0 Z" fill="var(--charcoal)"></path>
+    </svg>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-dark" id="como-funciona">
+    <div class="container">
+      <p class="section-label reveal" style="color: var(--yellow);">// como funciona</p>
+      <h2 class="section-title reveal" style="color: var(--white);">Do zero ao código</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <p class="step-title">Inscreva-se gratuitamente</p>
+            <p class="step-body">Preencha o formulário de inscrição. O curso é online, aberto a qualquer pessoa, sem custo e sem pré-requisitos.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <p class="step-title">Assista às 3 aulas</p>
+            <p class="step-body">Três aulas cobrindo tipos de dados, condicionais e laços, e listas e funções — progressivas e direto ao ponto.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <p class="step-title">Resolva os exercícios semanais</p>
+            <p class="step-body">Pratique o que aprendeu. Nossos monitores estão disponíveis de segunda a sábado para tirar dúvidas.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <p class="step-title">Faça a avaliação final</p>
+            <p class="step-body">Demonstre o que você aprendeu e conclua o seu primeiro contato com a programação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORN: dark → yellow -->
+  <div class="torn" style="background: var(--charcoal);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,40 Q30,65 70,38 Q110,14 150,50 Q180,68 225,40 Q265,16 305,52 Q335,68 380,40 Q420,16 460,50 Q490,66 540,38 Q580,14 620,50 Q650,66 700,38 Q740,14 780,50 Q810,66 860,38 Q900,14 940,50 Q970,66 1020,40 Q1060,18 1100,50 Q1130,66 1200,42 L1200,0 Z" fill="var(--yellow)"></path>
+    </svg>
+  </div>
+
+  <!-- MONITORES -->
+  <section class="section-yellow" id="monitores">
+    <div class="container">
+      <p class="section-label reveal" style="color: var(--charcoal);">// suporte</p>
+      <h2 class="section-title reveal" style="color: var(--charcoal);">Monitores</h2>
+      <p class="section-body reveal" style="color: var(--charcoal); max-width: 620px;">
+        Você não aprende sozinho. Contamos com uma equipe de monitores — todos alunos do Instituto de Informática da UFRGS — disponíveis <strong>todos os dias da semana</strong> para tirar dúvidas e te ajudar nos exercícios.
+      </p>
+    </div>
+  </section>
+
+  <!-- TORN: yellow → paper -->
+  <div class="torn" style="background: var(--yellow);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,35 Q35,58 75,32 Q115,10 155,48 Q185,66 230,38 Q270,14 310,50 Q340,66 390,38 Q430,14 470,50 Q500,66 550,38 Q590,14 630,50 Q660,66 710,38 Q750,14 790,50 Q820,66 870,38 Q910,14 950,50 Q980,66 1030,38 Q1070,14 1110,50 Q1140,66 1200,40 L1200,0 Z" fill="var(--paper)"></path>
+    </svg>
+  </div>
+
+  <!-- QUEM SOMOS -->
+  <section class="section-paper" id="quem-somos">
+    <div class="container">
+      <p class="section-label reveal">// quem está por trás</p>
+      <h2 class="section-title reveal">Quem somos?</h2>
+      <div class="about-grid" style="margin-top: 2rem;">
+        <div class="reveal">
+          <p class="section-body">
+            Somos alunos do <strong>Instituto de Informática da UFRGS</strong> e alumni do <strong>Amanhã Tech</strong>, programa do Fundo Amanhã.<br><br>
+            Viemos de um ambiente que valoriza tecnologia e aprendizado intenso — onde entendemos que o código é uma ferramenta poderosa de transformação.<br><br>
+            Percebemos que, para muitos, a programação parece algo inacessível. Mas a verdade é que a tecnologia deveria ser uma linguagem universal.<br><br>
+            Do desejo de tornar essa ferramenta acessível, nasce o <em>Byte a Byte</em>.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;">
+          <div class="card reveal" style="box-shadow: 4px 4px 0 var(--yellow); border-color: var(--yellow);">
+            <p class="card-title" style="font-size: 9px; margin-bottom: 0.4rem;">Realização</p>
+            <p class="card-body" style="font-size: 15px; font-weight: 700; color: var(--charcoal);">.INF · Instituto de Informática</p>
+            <p class="card-body">Universidade Federal do Rio Grande do Sul</p>
+          </div>
+          <div class="card reveal" style="box-shadow: 4px 4px 0 var(--charcoal);">
+            <p class="card-title" style="font-size: 9px; margin-bottom: 0.4rem;">Origem</p>
+            <p class="card-body" style="font-size: 15px; font-weight: 700; color: var(--charcoal);">Amanhã Tech</p>
+            <p class="card-body">Programa do Fundo Amanhã · Centro de Carreiras</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TORN: paper → dark -->
+  <div class="torn" style="background: var(--paper);">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,50 Q25,30 60,52 Q100,72 140,44 Q175,22 215,52 Q245,70 290,42 Q330,18 370,50 Q400,68 445,40 Q485,16 525,50 Q555,68 600,42 Q640,18 680,50 Q710,66 755,40 Q800,16 840,50 Q870,66 920,42 Q960,20 1000,50 Q1030,68 1080,42 Q1120,18 1160,50 Q1185,62 1200,48 L1200,0 Z" fill="var(--charcoal)"></path>
+    </svg>
+  </div>
+
+  <section class="section-dark" id="faq">
+    <div class="container" style="max-width: 720px;">
+      <p class="section-label reveal" style="color: var(--yellow);">// dúvidas frequentes</p>
+      <h2 class="section-title reveal" style="color: var(--white);">FAQ</h2>
+      <div class="faq-list reveal" style="margin-top: 2.5rem;">
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>O curso é gratuito?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">Sim! O Byte a Byte é 100% gratuito. É um projeto realizado por alunos do Instituto de Informática da UFRGS com o objetivo de democratizar o acesso à programação.</div>
+        </div>
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>Preciso saber programar para participar?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">Não! O curso começa do zero absoluto. Nosso objetivo é exatamente ser o seu primeiro contato com a programação — nenhum conhecimento técnico é necessário.</div>
+        </div>
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>Quantas aulas são?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">São 3 aulas: tipos de dados (int, float, str, bool), condicionais e laços (if/else, for, while), e listas e funções. Além das aulas, há exercícios semanais e uma avaliação final.</div>
+        </div>
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>Como funciona a monitoria?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">Nossos monitores estão disponíveis todos os dias da semana para tirar dúvidas sobre as aulas e os exercícios. Todos são alunos do Instituto de Informática da UFRGS.</div>
+        </div>
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>Por que Python?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">Python tem uma sintaxe muito próxima da linguagem humana, o que facilita o aprendizado. É também uma das linguagens mais usadas no mundo, em áreas como ciência de dados, automação e desenvolvimento web.</div>
+        </div>
+
+        <div class="faq-item" style="border-color: #444;">
+          <div class="faq-q" onclick="toggleFaq(this)" style="color: var(--white);">
+            <span>O objetivo é me tornar um programador profissional?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">Não necessariamente! Nosso foco é o primeiro contato — mostrar que programar é acessível e abrir portas. O que você faz depois disso é por sua conta. Mas muita gente se apaixona. 🐍</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INSCRIPTION CTA -->
+  <section id="inscricao" style="background: var(--charcoal); padding: 6rem 2rem; text-align: center;">
+    <div class="container">
+      <p class="section-label reveal visible" style="color: var(--yellow); text-align: center;">// próxima turma</p>
+      <h2 class="section-title reveal visible" style="color: var(--white); text-align: center; margin-bottom: 1.5rem;">Pronto para começar?</h2>
+      <p class="section-body reveal visible" style="color: #aaa; text-align: center; margin: 0 auto 3rem; max-width: 520px;">
+        As vagas são limitadas. Inscreva-se agora e dê o primeiro byte na sua jornada de programação.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a class="btn-primary reveal visible" href="https://instagram.com/byteabyte.inf" target="_blank">Seguir no Instagram</a>
+        <a class="btn-secondary reveal visible" href="/cdn-cgi/l/email-protection#63011a170602011a1706230a0d054d16051104104d0111" style="color: var(--white); border-color: var(--white); box-shadow: 4px 4px 0 #555;">Fale conosco</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM STRIP -->
+  <div class="insta-strip">
+    <div class="insta-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#FFD600" stroke-width="2"></rect>
+        <circle cx="12" cy="12" r="5" stroke="#FFD600" stroke-width="2"></circle>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="#FFD600"></circle>
+      </svg>
+    </div>
+    <a href="https://instagram.com/byteabyte.inf" target="_blank">@byteabyte.inf</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="imgs/logo.png" alt="Byte a Byte">
+        <div style="margin-top: 0.5rem; font-size: 12px; color: #555;">Realização: Instituto de Informática · UFRGS</div>
+      </div>
+      <div class="footer-credits">
+        <div>Byte a Byte · Porto Alegre, RS</div>
+        <div><span>@byteabyte.inf</span></div>
+        <div style="margin-top: 0.5rem; font-size: 11px;">© 2025 · Projeto de extensão UFRGS</div>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // FAQ toggle
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- TWEAKS PANEL -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "personalidade": "pixel",
+      "accentColor": "#ffd600",
+      "textura": true
+    }/*EDITMODE-END*/;
+
+    const PERSONALIDADES = {
+      pixel: {
+        label: 'Pixel Retrô',
+        heading: "'Press Start 2P', monospace",
+        body: "'Space Mono', monospace",
+        radius: '0px',
+        borderWidth: '3px',
+        shadowStyle: (c) => `5px 5px 0 ${c}`,
+      },
+      terminal: {
+        label: 'Terminal Hacker',
+        heading: "'DM Mono', monospace",
+        body: "'DM Mono', monospace",
+        radius: '0px',
+        borderWidth: '2px',
+        shadowStyle: (c) => `0 0 12px ${c}88`,
+      },
+      clean: {
+        label: 'Clean & Moderno',
+        heading: "'Syne', sans-serif",
+        body: "'Space Mono', monospace",
+        radius: '8px',
+        borderWidth: '2px',
+        shadowStyle: (c) => `4px 4px 0 ${c}`,
+      },
+    };
+
+    function applyTweaks(tweaks) {
+      const root = document.documentElement;
+      const p = PERSONALIDADES[tweaks.personalidade] || PERSONALIDADES.pixel;
+      const accent = tweaks.accentColor || '#FFD600';
+
+      // Accent color
+      root.style.setProperty('--yellow', accent);
+      root.style.setProperty('--yellow-dark', accent);
+
+      // Personality — fonts
+      root.style.setProperty('--pixel', p.heading);
+      root.style.setProperty('--mono', p.body);
+
+      // Terminal mode: green tint on terminal block
+      const terminal = document.querySelector('.about-terminal');
+      if (terminal) {
+        if (tweaks.personalidade === 'terminal') {
+          terminal.style.borderColor = accent;
+          terminal.style.boxShadow = `0 0 16px ${accent}55`;
+        } else {
+          terminal.style.borderColor = '';
+          terminal.style.boxShadow = '';
+        }
+      }
+
+      // Border radius on cards
+      document.querySelectorAll('.card, .aud-card, .btn-primary, .btn-secondary, .nav-cta').forEach(el => {
+        el.style.borderRadius = p.radius;
+        el.style.borderWidth = p.borderWidth;
+      });
+
+      // Texture
+      const texturedSections = document.querySelectorAll('.hero, .section-paper');
+      texturedSections.forEach(el => {
+        if (tweaks.textura) {
+          el.style.backgroundImage = `repeating-linear-gradient(transparent, transparent 31px, #C5BBA855 31px, #C5BBA855 32px)`;
+        } else {
+          el.style.backgroundImage = 'none';
+        }
+      });
+    }
+
+    function TweaksApp() {
+      const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+
+      React.useEffect(() => { applyTweaks(tweaks); }, [tweaks]);
+
+      return (
+        <window.TweaksPanel>
+          <window.TweakSection title="Personalidade">
+            <window.TweakRadio
+              id="personalidade"
+              value={tweaks.personalidade}
+              options={[
+                { value: 'pixel',    label: 'Pixel Retrô' },
+                { value: 'terminal', label: 'Terminal' },
+                { value: 'clean',    label: 'Clean' },
+              ]}
+              onChange={v => setTweak('personalidade', v)}
+            />
+          </window.TweakSection>
+
+          <window.TweakSection title="Cor de destaque">
+            <window.TweakColor
+              id="accentColor"
+              value={tweaks.accentColor}
+              onChange={v => setTweak('accentColor', v)}
+            />
+          </window.TweakSection>
+
+          <window.TweakSection title="Textura de papel">
+            <window.TweakToggle
+              id="textura"
+              label="Linhas de caderno"
+              value={tweaks.textura}
+              onChange={v => setTweak('textura', v)}
+            />
+          </window.TweakSection>
+        </window.TweaksPanel>
+      );
+    }
+
+    const tweakRoot = document.createElement('div');
+    document.body.appendChild(tweakRoot);
+    ReactDOM.createRoot(tweakRoot).render(<TweaksApp />);
+  </script>
+
+</body></html>
