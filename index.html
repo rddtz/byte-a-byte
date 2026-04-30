@@ -591,9 +591,67 @@
       transform: translateY(0);
     }
 
+    /* ── HAMBURGER ── */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 3px;
+      background: var(--yellow);
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      z-index: 99;
+      background: var(--charcoal);
+      border-top: 3px solid var(--yellow);
+      padding: 1rem 2rem 1.5rem;
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile ul { list-style: none; }
+    .nav-mobile li { border-bottom: 1px solid #555; }
+    .nav-mobile a {
+      font-family: var(--pixel);
+      font-size: 9px;
+      color: var(--yellow);
+      text-decoration: none;
+      display: block;
+      padding: 1.1rem 0;
+      letter-spacing: 0.05em;
+    }
+    .nav-mobile a:hover { color: var(--white); }
+    .nav-mobile .mobile-cta {
+      margin-top: 1.2rem;
+      display: inline-block;
+      font-family: var(--pixel);
+      font-size: 9px;
+      background: var(--yellow);
+      color: var(--charcoal);
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+    .nav-mobile .mobile-cta:hover { background: var(--white); }
+
     /* ── MOBILE NAV ── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-burger { display: flex; }
     }
   </style>
 </head>
@@ -613,7 +671,21 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <a class="nav-cta" href="#inscricao">Inscreva-se</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#conteudo">Aulas</a></li>
+      <li><a href="#monitores">Monitores</a></li>
+      <li><a href="#quem-somos">Quem somos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a class="mobile-cta" href="#inscricao">Inscreva-se</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1087,6 +1159,23 @@
     const tweakRoot = document.createElement('div');
     document.body.appendChild(tweakRoot);
     ReactDOM.createRoot(tweakRoot).render(<TweaksApp />);
+  </script>
+
+  <script>
+    (function () {
+      var burger = document.getElementById('nav-burger');
+      var menu = document.getElementById('nav-mobile');
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('open');
+        menu.classList.toggle('open');
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          burger.classList.remove('open');
+          menu.classList.remove('open');
+        });
+      });
+    })();
   </script>
 
 </body></html>
